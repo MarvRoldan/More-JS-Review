@@ -210,28 +210,56 @@ console.log(arrayOfMultiples(12, 10));
  */
 
 // Let's target our elements:
-const multiplesForm = document.querySelector( 'form' );
-const numField = document.querySelector( '[name="num"]' ); // Attribute selector = []
-const lengthField = document.querySelector( '[name="length"]' );
-const multiplesOutputElement = document.querySelector( 'dl' );
+const multiplesForm = document.querySelector('form');
+const numField = document.querySelector('[name="num"]'); // Attribute selector = []
+const lengthField = document.querySelector('[name="length"]');
+const multiplesOutputElement = document.querySelector('dl');
 
 // Listen for SUBMITS on this form.
-multiplesForm.addEventListener( 'submit', event => { // Keep track of "event" object.
-  // Prevent the form from SUBMITTING as this will reload the page.
-  event.preventDefault();
+multiplesForm.addEventListener('submit', event => { // Keep track of "event" object.
+    // Prevent the form from SUBMITTING as this will reload the page.
+    event.preventDefault();
 
-  // Get num value.
-  const numVal = numField.value;
+    // Get num value.
+    const numVal = numField.value;
 
-  // Get length value.
-  const lengthVal = lengthField.value;
+    // Get length value.
+    const lengthVal = lengthField.value;
 
-  // Perform the math operation and retrieve the array.
-  const result = arrayOfMultiples( numVal, lengthVal );
+    // Perform the math operation and retrieve the array.
+    const result = arrayOfMultiples(numVal, lengthVal);
 
-  // Output the result to the user.
-  multiplesOutputElement.innerHTML = `
+    // Output the result to the user.
+    multiplesOutputElement.innerHTML = `
     <dt>Values:</dt>
     <dd>${result}</dd>
   `;
-} );
+});
+
+/**
+ * Additional DOM Practice
+ */
+const productForm = document.querySelector("#product-form") // # because we're tageting an "id", "." for class.
+const productNameField = document.querySelector('[name="name"]');
+const productPriceField = document.querySelector('[name="price"]');
+const productCategoryField = document.querySelector('[name="category"]');
+
+// Listten to the form for a submission.
+productForm.addEventListener("submit", event => {
+    event.preventDefault(); // Make sure the form doesn't ACTUALLY submit.
+
+    // Retrieve values from fields.
+    const productNameFieldValue = productNameField.value;
+    const productPriceFieldValue = productPriceField.value;
+    const productCategoryFieldValue = productCategoryField.value;
+
+    // Form a new object.
+    const newProduct = new Product(
+        productNameFieldValue,
+        productPriceFieldValue,
+        productCategoryFieldValue
+    );
+
+    // Output the object (using our method!)
+    newProduct.output(document.body); // Output the body. 
+});
