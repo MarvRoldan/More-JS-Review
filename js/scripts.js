@@ -203,3 +203,35 @@ const arrayOfMultiples = (num, length) => {
 }
 
 console.log(arrayOfMultiples(12, 10));
+
+/**
+ * DOM & EVENTS
+ * Document Object Model
+ */
+
+// Let's target our elements:
+const multiplesForm = document.querySelector( 'form' );
+const numField = document.querySelector( '[name="num"]' ); // Attribute selector = []
+const lengthField = document.querySelector( '[name="length"]' );
+const multiplesOutputElement = document.querySelector( 'dl' );
+
+// Listen for SUBMITS on this form.
+multiplesForm.addEventListener( 'submit', event => { // Keep track of "event" object.
+  // Prevent the form from SUBMITTING as this will reload the page.
+  event.preventDefault();
+
+  // Get num value.
+  const numVal = numField.value;
+
+  // Get length value.
+  const lengthVal = lengthField.value;
+
+  // Perform the math operation and retrieve the array.
+  const result = arrayOfMultiples( numVal, lengthVal );
+
+  // Output the result to the user.
+  multiplesOutputElement.innerHTML = `
+    <dt>Values:</dt>
+    <dd>${result}</dd>
+  `;
+} );
